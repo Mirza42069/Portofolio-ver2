@@ -1,0 +1,90 @@
+export type Project = {
+  name: string
+  description: string
+  tags: readonly string[]
+  links?: {
+    live?: string
+    repo?: string
+  }
+  video?: string
+  highlights?: readonly string[]
+}
+
+export type Experience = {
+  role: string
+  company: string
+  start: string
+  end?: string
+  summary: string
+  bullets?: readonly string[]
+}
+
+export type SiteConfig = {
+  /** Used for SEO metadata. Update to your real domain when you have one. */
+  url: string
+  name: string
+  headline: string
+  location: string
+  email: string
+  description: string
+  availability?: string
+  links: {
+    github?: string
+  }
+  projects: readonly Project[]
+  experience: readonly Experience[]
+}
+
+export const siteConfig: SiteConfig = {
+  url: "https://x.com/elonmusk",
+  name: "Mirza",
+  headline: "an amateur developer.",
+  location: "Indonesia",
+  email: "blomada@gmail.com",
+  description:
+    "A Next.js + TypeScript portfolio showcasing my projects and experience.",
+  availability: "Open to opportunities",
+  links: {
+    github: "https://github.com/Mirza42069",
+  },
+  projects: [
+    {
+      name: "Winnicode News Website",
+      description:
+        "A news website prototype built during my internship at PT. Winnicode Garuda Teknologi.",
+      tags: ["Next.js", "TypeScript", "CSS"],
+      links: {
+        live: "https://winni-project.vercel.app/",
+        repo: "https://github.com/Mirza42069/News-Website-Winni-Repo",
+      },
+    },
+    {
+      name: "Benchmark Database for LLM",
+      description: "Thesis in progress...",
+      tags: ["Python", "RAG", "LLM"],
+      links: {
+        repo: "https://github.com/Mirza42069/ChatBot-RAG-Comparison-Database",
+      },
+    },
+    {
+      name: "Gacha Simulator",
+      description:
+        "A gacha game simulator that replicates pull mechanics from popular gacha games.",
+      tags: ["JavaScript", "Game", "Simulator"],
+      video: "/Gacha Simulator Web.mov",
+      links: {
+        repo: "https://github.com/Mirza42069/Gacha-Simulator",
+      },
+    },
+  ],
+  experience: [
+    {
+      role: "Software Engineer Intern",
+      company: "PT. Winnicode Garuda Teknologi",
+      start: "2025",
+      end: "2025",
+      summary:
+        "Built a prototype news website as part of the internship program.",
+    },
+  ],
+}
