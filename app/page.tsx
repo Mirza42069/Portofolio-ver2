@@ -1,3 +1,5 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -9,13 +11,12 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { SlowVideo } from "@/components/slow-video"
+import { VideoCard } from "@/components/video-card"
+import { HeroSection } from "@/components/hero-section"
 import { siteConfig } from "@/lib/site-config"
 import {
   ArrowUpRightIcon,
-  GithubLogoIcon,
-  MapPinIcon,
-} from "@phosphor-icons/react/ssr"
+} from "@phosphor-icons/react"
 
 function SectionHeading({
   title,
@@ -48,58 +49,7 @@ export default function Page() {
   return (
     <div className="min-h-dvh">
       <main className="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6">
-        <section className="hero-section relative overflow-hidden rounded-xl border bg-card p-6 sm:p-10">
-          {/* Enhanced gradient overlays */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-primary/10" />
-          <div className="pointer-events-none absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-
-          <div className="relative">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="secondary" className="border border-primary/20">
-                <MapPinIcon data-icon="inline-start" />
-                {siteConfig.location}
-              </Badge>
-              {siteConfig.availability ? (
-                <Badge variant="secondary">{siteConfig.availability}</Badge>
-              ) : null}
-            </div>
-
-            <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-              {siteConfig.name}.
-            </h1>
-            <p className="text-muted-foreground mt-3 max-w-2xl text-sm/relaxed sm:text-base/relaxed">
-              {siteConfig.headline}
-            </p>
-            <p className="mt-3 text-sm/relaxed">
-              Reach me at{" "}
-              <a
-                href="https://mail.google.com/mail/?view=cm&to=mirzafarisy@gmail.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-primary font-medium underline-offset-4 hover:underline"
-              >
-                Gmail
-              </a>
-            </p>
-
-            {siteConfig.links.github ? (
-              <div className="mt-6">
-                <Button asChild size="sm">
-                  <a
-                    href={siteConfig.links.github}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <GithubLogoIcon data-icon="inline-start" />
-                    GitHub
-                    <ArrowUpRightIcon data-icon="inline-end" />
-                  </a>
-                </Button>
-              </div>
-            ) : null}
-          </div>
-        </section>
+        <HeroSection />
 
         <Separator className="my-10" />
 
@@ -113,64 +63,57 @@ export default function Page() {
 
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {siteConfig.projects.map((project, index) => (
-              <Card key={project.name} className="border-l-2 border-l-primary/30" data-position={index % 2 === 0 ? "left" : "right"}>
-                <CardHeader>
-                  <CardTitle>{project.name}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {project.video ? (
-                    <div className="rounded-lg overflow-hidden border">
-                      <SlowVideo src={project.video} />
-                    </div>
-                  ) : null}
-
-                  {project.highlights?.length ? (
-                    <ul className="text-xs/relaxed list-disc pl-4 space-y-1 marker:text-primary">
-                      {project.highlights.map((line) => (
-                        <li key={line}>{line}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </CardContent>
-                <CardFooter className="gap-2">
+              project.video ? (
+                <VideoCard
+                  key={project.name}
+                  name={project.name}
+                  video={project.video}
+                  position={index % 2 === 0 ? "left" : "right"}
+                />
+              ) : (
+                <Card key={project.name} className="border-l-2 border-l-primary/30" data-position={index % 2 === 0 ? "left" : "right"}>
+                  <CardHeader>
+                    <CardTitle>{project.name}</CardTitle>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {project.highlights?.length ? (
+                      <ul className="text-xs/relaxed list-disc pl-4 space-y-1 marker:text-primary">
+                        {project.highlights.map((line) => (
+                          <li key={line}>{line}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </CardContent>
                   {project.links?.live ? (
-                    <Button asChild size="sm">
-                      <a
-                        href={project.links.live}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Live
-                        <ArrowUpRightIcon data-icon="inline-end" />
-                      </a>
-                    </Button>
+                    <CardFooter className="gap-2">
+                      <Button asChild size="sm">
+                        <a
+                          href={project.links.live}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Live
+                          <ArrowUpRightIcon data-icon="inline-end" />
+                        </a>
+                      </Button>
+                    </CardFooter>
                   ) : null}
-                  {project.links?.repo ? (
-                    <Button asChild variant="ghost" size="sm">
-                      <a
-                        href={project.links.repo}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Code
-                        <ArrowUpRightIcon data-icon="inline-end" />
-                      </a>
-                    </Button>
-                  ) : null}
-                </CardFooter>
-              </Card>
+                </Card>
+              )
             ))}
           </div>
         </section>
 
         <Separator className="my-10" />
 
-        <section id="experience" className="scroll-mt-28" data-fade="down">
-          <SectionHeading
-            title="Experience"
-            description="Where I've worked and what I focused on."
-          />
+        <section id="experience" className="scroll-mt-28">
+          <div data-fade="down">
+            <SectionHeading
+              title="Experience"
+              description="Where I've worked and what I focused on."
+            />
+          </div>
 
           <div className="mt-4 grid gap-4">
             {siteConfig.experience.map((job) => (

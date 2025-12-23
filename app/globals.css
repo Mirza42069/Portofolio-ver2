@@ -149,12 +149,14 @@
   main>section,
   main>hr,
   [data-slot="card"],
+  .video-card,
+  .hero-section,
   [data-fade] {
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
   }
 
   /* Hero section fades up */
-  .cards-hidden main>section.hero-section {
+  .cards-hidden .hero-section {
     opacity: 0;
     transform: translateY(-20px);
   }
