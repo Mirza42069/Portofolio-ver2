@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { SlowVideo } from "@/components/slow-video"
 import { siteConfig } from "@/lib/site-config"
 import {
   ArrowUpRightIcon,
@@ -73,10 +74,12 @@ export default function Page() {
             <p className="mt-3 text-sm/relaxed">
               Reach me at{" "}
               <a
-                href={siteConfig.url}
+                href="https://mail.google.com/mail/?view=cm&to=mirzafarisy@gmail.com"
+                target="_blank"
+                rel="noreferrer"
                 className="text-primary font-medium underline-offset-4 hover:underline"
               >
-                {siteConfig.email}
+                Gmail
               </a>
             </p>
 
@@ -101,14 +104,16 @@ export default function Page() {
         <Separator className="my-10" />
 
         <section id="projects" className="scroll-mt-28">
-          <SectionHeading
-            title="Projects"
-            description="A few things I've built recently."
-          />
+          <div data-fade="left">
+            <SectionHeading
+              title="Projects"
+              description="A few things I've built recently."
+            />
+          </div>
 
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            {siteConfig.projects.map((project) => (
-              <Card key={project.name} className="border-l-2 border-l-primary/30">
+            {siteConfig.projects.map((project, index) => (
+              <Card key={project.name} className="border-l-2 border-l-primary/30" data-position={index % 2 === 0 ? "left" : "right"}>
                 <CardHeader>
                   <CardTitle>{project.name}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
@@ -116,14 +121,7 @@ export default function Page() {
                 <CardContent className="space-y-3">
                   {project.video ? (
                     <div className="rounded-lg overflow-hidden border">
-                      <video
-                        src={project.video}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full"
-                      />
+                      <SlowVideo src={project.video} />
                     </div>
                   ) : null}
 
@@ -168,7 +166,7 @@ export default function Page() {
 
         <Separator className="my-10" />
 
-        <section id="experience" className="scroll-mt-28">
+        <section id="experience" className="scroll-mt-28" data-fade="down">
           <SectionHeading
             title="Experience"
             description="Where I've worked and what I focused on."
@@ -176,7 +174,7 @@ export default function Page() {
 
           <div className="mt-4 grid gap-4">
             {siteConfig.experience.map((job) => (
-              <Card key={`${job.role}-${job.company}`} className="border-l-2 border-l-primary/30">
+              <Card key={`${job.role}-${job.company}`} className="border-l-2 border-l-primary/30" data-fade="down">
                 <CardHeader>
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>

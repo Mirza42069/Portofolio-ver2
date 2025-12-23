@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google"
 
 import { siteConfig } from "@/lib/site-config"
 import { CustomCursor } from "@/components/custom-cursor"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 import "./globals.css"
 
@@ -54,10 +55,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} scroll-smooth dark`}>
+    <html lang="en" className={`${jetbrainsMono.variable} scroll-smooth dark`} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ThemeToggle />
         <CustomCursor />
         {children}
       </body>

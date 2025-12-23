@@ -140,4 +140,43 @@
     z-index: 9999;
     transition: transform 0.15s ease-out, mix-blend-mode 0.15s ease-out;
   }
+
+  /* Card fade animation for theme toggle */
+  main>section,
+  main>hr,
+  [data-slot="card"],
+  [data-fade] {
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  }
+
+  /* Hero section fades up */
+  .cards-hidden main>section.hero-section {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  /* Left fading elements */
+  .cards-hidden [data-fade="left"],
+  .cards-hidden [data-position="left"] {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  /* Right fading elements */
+  .cards-hidden [data-fade="right"],
+  .cards-hidden [data-position="right"] {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  /* Down fading elements (Experience) */
+  .cards-hidden [data-fade="down"] {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  /* Separators fade out */
+  .cards-hidden main>hr {
+    opacity: 0;
+  }
 }
