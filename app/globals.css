@@ -119,8 +119,25 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    cursor: none;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .custom-cursor {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(112, 214, 165, 0.09);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease-out, mix-blend-mode 0.15s ease-out;
   }
 }

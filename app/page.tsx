@@ -1,5 +1,3 @@
-"use client"
-
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,52 +9,12 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { siteConfig, Project } from "@/lib/site-config"
+import { siteConfig } from "@/lib/site-config"
 import {
   ArrowUpRightIcon,
   GithubLogoIcon,
   MapPinIcon,
 } from "@phosphor-icons/react/ssr"
-import { useState, useRef } from "react"
-
-function VideoButton({ project }: { project: Project }) {
-  const [showVideo, setShowVideo] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const handleVideoEnd = () => {
-    setShowVideo(false)
-  }
-
-  const handleLiveClick = () => {
-    setShowVideo(true)
-  }
-
-  if (!project.video) return null
-
-  return (
-    <>
-      <Button size="sm" onClick={handleLiveClick}>
-        Live
-        <ArrowUpRightIcon data-icon="inline-end" />
-      </Button>
-
-      {showVideo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setShowVideo(false)}>
-          <div className="relative max-w-4xl w-full mx-4" onClick={(e) => e.stopPropagation()}>
-            <video
-              ref={videoRef}
-              src={project.video}
-              autoPlay
-              controls
-              className="w-full rounded-lg"
-              onEnded={handleVideoEnd}
-            />
-          </div>
-        </div>
-      )}
-    </>
-  )
-}
 
 function SectionHeading({
   title,
@@ -89,7 +47,7 @@ export default function Page() {
   return (
     <div className="min-h-dvh">
       <main className="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6">
-        <section className="relative overflow-hidden rounded-xl border bg-card p-6 sm:p-10">
+        <section className="hero-section relative overflow-hidden rounded-xl border bg-card p-6 sm:p-10">
           {/* Enhanced gradient overlays */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-primary/10" />
@@ -156,13 +114,18 @@ export default function Page() {
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="outline">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
+                  {project.video ? (
+                    <div className="rounded-lg overflow-hidden border">
+                      <video
+                        src={project.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full"
+                      />
+                    </div>
+                  ) : null}
 
                   {project.highlights?.length ? (
                     <ul className="text-xs/relaxed list-disc pl-4 space-y-1 marker:text-primary">
@@ -173,9 +136,7 @@ export default function Page() {
                   ) : null}
                 </CardContent>
                 <CardFooter className="gap-2">
-                  {project.video ? (
-                    <VideoButton project={project} />
-                  ) : project.links?.live ? (
+                  {project.links?.live ? (
                     <Button asChild size="sm">
                       <a
                         href={project.links.live}

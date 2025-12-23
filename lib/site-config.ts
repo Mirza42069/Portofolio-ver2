@@ -52,28 +52,28 @@ export const siteConfig: SiteConfig = {
       name: "Winnicode News Website",
       description:
         "A news website prototype built during my internship at PT. Winnicode Garuda Teknologi.",
-      tags: ["Next.js", "TypeScript", "CSS"],
+      tags: [],
+      video: "/website news.mov",
       links: {
-        live: "https://winni-project.vercel.app/",
         repo: "https://github.com/Mirza42069/News-Website-Winni-Repo",
-      },
-    },
-    {
-      name: "Benchmark Database for LLM",
-      description: "Thesis in progress...",
-      tags: ["Python", "RAG", "LLM"],
-      links: {
-        repo: "https://github.com/Mirza42069/ChatBot-RAG-Comparison-Database",
       },
     },
     {
       name: "Gacha Simulator",
       description:
         "A gacha game simulator that replicates pull mechanics from popular gacha games.",
-      tags: ["JavaScript", "Game", "Simulator"],
+      tags: [],
       video: "/Gacha Simulator Web.mov",
       links: {
         repo: "https://github.com/Mirza42069/Gacha-Simulator",
+      },
+    },
+    {
+      name: "Benchmark Database for LLM",
+      description: "Thesis in progress...",
+      tags: [],
+      links: {
+        repo: "https://github.com/Mirza42069/ChatBot-RAG-Comparison-Database",
       },
     },
   ],

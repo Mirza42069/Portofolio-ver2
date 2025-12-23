@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google"
 
 import { siteConfig } from "@/lib/site-config"
+import { CustomCursor } from "@/components/custom-cursor"
 
 import "./globals.css"
 
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CustomCursor />
         {children}
       </body>
     </html>
