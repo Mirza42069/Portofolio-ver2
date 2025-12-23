@@ -134,11 +134,15 @@
     position: fixed;
     width: 32px;
     height: 32px;
-    background-color: rgba(112, 214, 165, 0.09);
+    background-color: rgba(112, 214, 165, 0.3);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.15s ease-out, mix-blend-mode 0.15s ease-out;
+    transition: transform 0.15s ease-out, mix-blend-mode 0.15s ease-out, background-color 0.3s ease;
+  }
+
+  .dark .custom-cursor {
+    background-color: rgba(112, 214, 165, 0.09);
   }
 
   /* Card fade animation for theme toggle */
@@ -146,7 +150,7 @@
   main>hr,
   [data-slot="card"],
   [data-fade] {
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
   }
 
   /* Hero section fades up */
@@ -177,6 +181,17 @@
 
   /* Separators fade out */
   .cards-hidden main>hr {
+    opacity: 0;
+  }
+
+  /* Separator center-spread animation */
+  .separator-animate {
+    transform-origin: center;
+    transition: transform 0.6s ease-out, opacity 0.4s ease-in-out;
+  }
+
+  .cards-hidden .separator-animate {
+    transform: scaleX(0);
     opacity: 0;
   }
 }
