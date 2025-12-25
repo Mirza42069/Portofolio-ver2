@@ -1,5 +1,6 @@
 export type Project = {
   name: string
+  slug: string
   description: string
   tags: readonly string[]
   links?: {
@@ -50,6 +51,7 @@ export const siteConfig: SiteConfig = {
   projects: [
     {
       name: "Winnicode News Website",
+      slug: "winnicode",
       description:
         "A news website prototype built during my internship at PT. Winnicode Garuda Teknologi.",
       tags: [],
@@ -60,6 +62,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       name: "Gacha Simulator",
+      slug: "gacha",
       description:
         "A gacha game simulator that replicates pull mechanics from popular gacha games.",
       tags: [],
@@ -70,6 +73,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       name: "Benchmark Database for LLM",
+      slug: "benchmark",
       description: "Thesis in progress...",
       tags: [],
       links: {

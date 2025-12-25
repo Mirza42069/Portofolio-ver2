@@ -67,6 +67,7 @@ export default function Page() {
                 <VideoCard
                   key={project.name}
                   name={project.name}
+                  slug={project.slug}
                   video={project.video}
                   position={index % 2 === 0 ? "left" : "right"}
                 />
