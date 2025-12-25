@@ -55,7 +55,7 @@ export const siteConfig: SiteConfig = {
       description:
         "A news website prototype built during my internship at PT. Winnicode Garuda Teknologi.",
       tags: [],
-      video: "/website news.mov",
+      video: "/website news.mp4",
       links: {
         repo: "https://github.com/Mirza42069/News-Website-Winni-Repo",
       },
@@ -66,7 +66,7 @@ export const siteConfig: SiteConfig = {
       description:
         "A gacha game simulator that replicates pull mechanics from popular gacha games.",
       tags: [],
-      video: "/Gacha Simulator Web.mov",
+      video: "/Gacha Simulator Web.mp4",
       links: {
         repo: "https://github.com/Mirza42069/Gacha-Simulator",
       },
