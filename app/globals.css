@@ -130,6 +130,14 @@
     @apply bg-background text-foreground;
   }
 
+  /* Performance: enable GPU acceleration for animations */
+  .hero-section,
+  .video-card,
+  [data-fade],
+  [data-position] {
+    will-change: transform, opacity;
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;

@@ -13,10 +13,12 @@ export function SlowVideo({ src, playbackRate = 0.5 }: SlowVideoProps) {
             loop
             muted
             playsInline
-            className="w-full"
+            preload="none"
+            className="w-full h-full object-cover"
             ref={(el) => {
                 if (el) el.playbackRate = playbackRate
             }}
         />
     )
 }
+
