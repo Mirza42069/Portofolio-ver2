@@ -8,20 +8,19 @@ interface VideoCardProps {
     slug: string
     video: string
     position: "left" | "right"
+    videoStyle?: string
 }
 
-export function VideoCard({ name, slug, video, position }: VideoCardProps) {
+export function VideoCard({ name, slug, video, position, videoStyle }: VideoCardProps) {
     return (
         <Link
             href={`/projects/${slug}`}
-            className="video-card relative rounded-xl overflow-hidden border border-primary/30 group transition-all duration-200 hover:scale-[1.01] hover:-translate-y-1 block cursor-pointer"
+            className="video-card relative rounded-xl overflow-hidden group transition-all duration-200 hover:scale-[1.01] hover:-translate-y-1 block cursor-pointer"
             data-position={position}
         >
-            {/* Full video background - slightly zoomed to crop edges */}
+            {/* Full video background */}
             <div className="aspect-video overflow-hidden">
-                <div className="scale-105 origin-center w-full h-full">
-                    <SlowVideo src={video} />
-                </div>
+                <SlowVideo src={video} className={videoStyle} />
             </div>
 
             {/* Glass overlay with title on hover */}

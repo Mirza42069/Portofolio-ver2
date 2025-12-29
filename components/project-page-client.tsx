@@ -14,7 +14,34 @@ const projectContent: Record<string, {
     images: string[]
     details: string
     liveUrl?: string
+    videoStyle?: string
+    bentoLayout?: "1-1" | "1-2" | "3-2"
 }> = {
+    "money-drain": {
+        title: "Money Drain",
+        intro: "A minimalist money management web app with a modern dark aesthetic for tracking finances.",
+        images: [
+            "/moneydrain (1).png",
+            "/moneydrain (3).png"
+        ],
+        details: "Built from scratch as a personal project, this money management web app is my minimalist take on tracking finances with a modern dark aesthetic. I designed a clean, distraction-free interface for logging expenses and income by category—no clutter, just smooth tracking. Data is stored locally with localStorage, featuring multiple account storage slots for flexible organization. Powered by Next.js 16, React 19, shadcn/ui components, Tailwind CSS 4, Radix UI primitives, and Tabler Icons, it's fully responsive across devices with dark/light mode support. Features include multi-currency support (IDR, JPY, USD) with automatic conversion, customizable categories, CSV export, and time-based filtering—all running entirely offline without a backend.",
+        liveUrl: "https://moneydrain.vercel.app/",
+        videoStyle: "object-top",
+        bentoLayout: "1-1"
+    },
+    newsroom: {
+        title: "Newsroom",
+        intro: "A modern news app with a polished design for browsing and discovering articles by category.",
+        images: [
+            "/newsroom (1).png",
+            "/newsroom (2).png",
+            "/newsroom (3).png",
+            "/newsroom (4).png",
+            "/newsroom (5).png"
+        ],
+        details: "Built from scratch as a personal project, this news app is my custom creation with a modern, polished design. I crafted a sleek, intuitive interface for browsing and discovering articles by category—featuring a clean layout with seamless navigation. The backend is powered by Convex for real-time data synchronization, with a dedicated admin dashboard for creating and managing content. Powered by Next.js 16, React 19, Tailwind CSS 4, shadcn/ui components, tRPC for type-safe APIs, Clerk for authentication, and Radix UI for accessible interactions, it delivers a fully responsive experience across all devices. Built with TypeScript for rock-solid type safety and optimized for performance with modern tooling.",
+        liveUrl: "https://newsroom-webnewsagain.vercel.app/"
+    },
     winnicode: {
         title: "Prototype News Web",
         intro: "A news website I built during my internship. It lets people read and manage news articles easily.",
@@ -25,7 +52,7 @@ const projectContent: Record<string, {
             "/winni4.jpg",
             "/winni5.jpg"
         ],
-        details: "Built from scratch during my internship at PT. Winnicode Garuda Teknologi, this news app is my custom remake with a modern twist. I designed a clean, intuitive interface for browsing articles by category—no clutter, just smooth reading. The backend runs on MongoDB with a dedicated admin dashboard for managing content. Powered by Next.js, React, Swiper.js for carousels, a RESTful API, and Bootstrap, it's fully responsive across devices. Massive thanks to JavaScript Mastery's YouTube tutorial for teaching me the ropes!",
+        details: "Built from scratch during my internship at PT. Winnicode Garuda Teknologi, this news app is my custom remake with a modern twist. I designed a clean, intuitive interface for browsing articles by category—no clutter, just smooth reading. The backend runs on MongoDB with a dedicated admin dashboard for managing content. Powered by Next.js, React, Swiper.js for carousels, a RESTful API, and Bootstrap, it's fully responsive across devices. Massive thanks to DStudio Technology's YouTube tutorial for teaching me the ropes!",
         liveUrl: "https://winni-project.vercel.app/"
     },
     gacha: {
@@ -73,7 +100,7 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                             loop
                             muted
                             playsInline
-                            className="w-full h-full object-cover"
+                            className={`w-full h-full object-cover ${content.videoStyle || ''}`}
                         />
                     </div>
                 </div>
@@ -120,43 +147,97 @@ export default function ProjectPageClient({ project }: { project: Project }) {
                             </a>
                         )}
 
-                        {/* Bento grid - 3 top, 2 bottom, tight connection */}
+                        {/* Bento grid - dynamic layout based on bentoLayout prop */}
                         {content.images.length > 0 && (
                             <div className={`mt-10 rounded-md overflow-hidden transition-all duration-700 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                                {/* Top row - 3 images */}
-                                <div className="grid grid-cols-3 gap-1">
-                                    {content.images.slice(0, 3).map((img, index) => (
-                                        <div
-                                            key={img}
-                                            className="aspect-video overflow-hidden bg-card hover:opacity-90 transition-opacity duration-300"
-                                        >
-                                            <Image
-                                                src={img}
-                                                alt={`Screenshot ${index + 1}`}
-                                                width={400}
-                                                height={225}
-                                                className={`w-full h-full object-cover ${index < 2 ? 'scale-[1.5]' : 'scale-[1.35]'}`}
-                                            />
+                                {content.bentoLayout === "1-1" ? (
+                                    /* Layout: 1 left, 1 right (side by side) */
+                                    <div className="grid grid-cols-2 gap-1">
+                                        {content.images.slice(0, 2).map((img, index) => (
+                                            <div
+                                                key={img}
+                                                className="aspect-video overflow-hidden bg-card hover:opacity-90 transition-opacity duration-300"
+                                            >
+                                                <Image
+                                                    src={img}
+                                                    alt={`Screenshot ${index + 1}`}
+                                                    width={1920}
+                                                    height={1080}
+                                                    className="w-full h-full object-cover object-top scale-[3]"
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : content.bentoLayout === "1-2" ? (
+                                    /* Layout: 1 top, 2 bottom */
+                                    <>
+                                        <div className="grid grid-cols-1 gap-1">
+                                            <div className="aspect-video overflow-hidden bg-card hover:opacity-90 transition-opacity duration-300">
+                                                <Image
+                                                    src={content.images[0]}
+                                                    alt="Screenshot 1"
+                                                    width={1920}
+                                                    height={1080}
+                                                    className="w-full h-full object-cover object-top scale-100"
+                                                />
+                                            </div>
                                         </div>
-                                    ))}
-                                </div>
-                                {/* Bottom row - 2 images */}
-                                <div className="grid grid-cols-2 gap-1 mt-1">
-                                    {content.images.slice(3, 5).map((img, index) => (
-                                        <div
-                                            key={img}
-                                            className="aspect-video overflow-hidden bg-card hover:opacity-90 transition-opacity duration-300"
-                                        >
-                                            <Image
-                                                src={img}
-                                                alt={`Screenshot ${index + 4}`}
-                                                width={500}
-                                                height={280}
-                                                className="w-full h-full object-cover scale-[1.35]"
-                                            />
+                                        <div className="grid grid-cols-2 gap-1 mt-1">
+                                            {content.images.slice(1, 3).map((img, index) => (
+                                                <div
+                                                    key={img}
+                                                    className="aspect-video overflow-hidden bg-card hover:opacity-90 transition-opacity duration-300"
+                                                >
+                                                    <Image
+                                                        src={img}
+                                                        alt={`Screenshot ${index + 2}`}
+                                                        width={1920}
+                                                        height={1080}
+                                                        className="w-full h-full object-cover object-top scale-150"
+                                                    />
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
+                                    </>
+                                ) : (
+                                    /* Default Layout: 3 top, 2 bottom */
+                                    <>
+                                        <div className="grid grid-cols-3 gap-1">
+                                            {content.images.slice(0, 3).map((img, index) => (
+                                                <div
+                                                    key={img}
+                                                    className="aspect-video overflow-hidden bg-card hover:opacity-90 transition-opacity duration-300"
+                                                >
+                                                    <Image
+                                                        src={img}
+                                                        alt={`Screenshot ${index + 1}`}
+                                                        width={1920}
+                                                        height={1080}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                        {content.images.length > 3 && (
+                                            <div className="grid grid-cols-2 gap-1 mt-1">
+                                                {content.images.slice(3, 5).map((img, index) => (
+                                                    <div
+                                                        key={img}
+                                                        className="aspect-video overflow-hidden bg-card hover:opacity-90 transition-opacity duration-300"
+                                                    >
+                                                        <Image
+                                                            src={img}
+                                                            alt={`Screenshot ${index + 4}`}
+                                                            width={1920}
+                                                            height={1080}
+                                                            className="w-full h-full object-cover"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </>
+                                )}
                             </div>
                         )}
 

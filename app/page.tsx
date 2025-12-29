@@ -69,6 +69,7 @@ export default function Page() {
                   name={project.name}
                   slug={project.slug}
                   video={project.video}
+                  videoStyle={project.videoStyle}
                   position={index % 2 === 0 ? "left" : "right"}
                 />
               ) : (
