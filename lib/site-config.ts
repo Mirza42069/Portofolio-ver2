@@ -56,7 +56,7 @@ export const siteConfig: SiteConfig = {
       description:
         "Built from scratch as a personal project, this money management web app is my minimalist take on tracking finances with a modern dark aesthetic. I designed a clean, distraction-free interface for logging expenses and income by category—no clutter, just smooth tracking. Data is stored locally with localStorage, featuring multiple account storage slots for flexible organization. Powered by Next.js 16, React 19, shadcn/ui components, Tailwind CSS 4, Radix UI primitives, and Tabler Icons, it's fully responsive across devices with dark/light mode support. Features include multi-currency support (IDR, JPY, USD) with automatic conversion, customizable categories, CSV export, and time-based filtering—all running entirely offline without a backend.",
       tags: [],
-      video: "/money drain.mp4",
+      video: "/money-drain.mp4",
       videoStyle: "object-top",
       links: {
         repo: "https://github.com/Mirza42069/Money-Drain",
