@@ -4,7 +4,7 @@ import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google"
 import { siteConfig } from "@/lib/site-config"
 import { CustomCursor } from "@/components/custom-cursor"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { GithubButton } from "@/components/github-button"
+import { GmailButton } from "@/components/gmail-button"
 
 import "./globals.css"
 
@@ -61,7 +61,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeToggle />
-        <GithubButton />
+        <GmailButton />
         <CustomCursor />
         {children}
       </body>

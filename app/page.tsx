@@ -53,6 +53,45 @@ export default function Page() {
 
         <Separator className="my-10" />
 
+        <section id="experience" className="scroll-mt-28">
+          <div data-fade="down">
+            <SectionHeading
+              title="Experience"
+              description="Where I've worked and what I focused on."
+            />
+          </div>
+
+          <div className="mt-4 grid gap-4">
+            {siteConfig.experience.map((job) => (
+              <Card key={`${job.role}-${job.company}`} className="border-l-2 border-l-primary/30" data-fade="down">
+                <CardHeader>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <CardTitle>{job.role}</CardTitle>
+                      <CardDescription>{job.company}</CardDescription>
+                    </div>
+                    <Badge variant="secondary">
+                      {job.end ? `${job.start} — ${job.end}` : job.start}
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <p className="text-xs/relaxed">{job.summary}</p>
+                  {job.bullets?.length ? (
+                    <ul className="text-xs/relaxed list-disc pl-4 space-y-1 marker:text-primary">
+                      {job.bullets.map((line) => (
+                        <li key={line}>{line}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         <section id="projects" className="scroll-mt-28">
           <div data-fade="left">
             <SectionHeading
@@ -103,45 +142,6 @@ export default function Page() {
                   ) : null}
                 </Card>
               )
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
-        <section id="experience" className="scroll-mt-28">
-          <div data-fade="down">
-            <SectionHeading
-              title="Experience"
-              description="Where I've worked and what I focused on."
-            />
-          </div>
-
-          <div className="mt-4 grid gap-4">
-            {siteConfig.experience.map((job) => (
-              <Card key={`${job.role}-${job.company}`} className="border-l-2 border-l-primary/30" data-fade="down">
-                <CardHeader>
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div>
-                      <CardTitle>{job.role}</CardTitle>
-                      <CardDescription>{job.company}</CardDescription>
-                    </div>
-                    <Badge variant="secondary">
-                      {job.start} — {job.end ?? "Present"}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-xs/relaxed">{job.summary}</p>
-                  {job.bullets?.length ? (
-                    <ul className="text-xs/relaxed list-disc pl-4 space-y-1 marker:text-primary">
-                      {job.bullets.map((line) => (
-                        <li key={line}>{line}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </CardContent>
-              </Card>
             ))}
           </div>
         </section>

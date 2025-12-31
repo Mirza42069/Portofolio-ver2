@@ -41,7 +41,7 @@ export const siteConfig: SiteConfig = {
   url: "https://x.com/elonmusk",
   name: "Mirza",
   headline: "an amateur fullstack developer.",
-  location: "Indonesia",
+  location: "Tangsel, Indonesia",
   email: "blomada@gmail.com",
   description:
     "A Next.js + TypeScript portfolio showcasing my projects and experience.",
@@ -110,7 +110,6 @@ export const siteConfig: SiteConfig = {
       role: "Software Engineer Intern",
       company: "PT. Winnicode Garuda Teknologi",
       start: "2025",
-      end: "2025",
       summary:
         "Built a prototype news website as part of the internship program.",
     },

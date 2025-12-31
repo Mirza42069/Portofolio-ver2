@@ -41,16 +41,16 @@ export function HeroSection() {
                     {siteConfig.headline}
                 </p>
 
-                {/* Gmail link - slides from left with more delay */}
+                {/* GitHub link - slides from left with more delay */}
                 <p className={`mt-3 text-sm/relaxed transition-all duration-300 ${showContent ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`} style={{ transitionDelay: '250ms' }}>
-                    Reach me at{" "}
+                    Check out my{" "}
                     <a
-                        href="https://mail.google.com/mail/?view=cm&to=mirzafarisy@gmail.com"
+                        href="https://github.com/Mirza42069"
                         target="_blank"
                         rel="noreferrer"
                         className="text-primary font-medium underline-offset-4 hover:underline"
                     >
-                        Gmail
+                        GitHub
                     </a>
                 </p>
             </div>
